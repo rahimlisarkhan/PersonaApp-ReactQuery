@@ -4,16 +4,18 @@ import { isEmail } from "shared/utils/isEmail";
 import { UserType } from "types";
 import styles from "./UserForm.module.scss";
 
+const InitialForm = {
+  name: "",
+  phone: "",
+  email: "",
+};
+
 export const UserForm = ({
   onSubmitForm,
 }: {
   onSubmitForm: (form: Partial<UserType>) => void;
 }) => {
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    email: "",
-  });
+  const [form, setForm] = useState(InitialForm);
 
   const handleForm = (e: ChangeEvent) => {
     const name = e.target.name;
@@ -40,6 +42,7 @@ export const UserForm = ({
         variant="outlined"
         color="warning"
         name="name"
+        value={form.name}
         error={!form.name}
         onChange={handleForm}
       />
@@ -52,6 +55,7 @@ export const UserForm = ({
         className={styles.input}
         style={{ marginTop: 18 }}
         name="email"
+        value={form.email}
         error={!form.email}
         onChange={handleForm}
       />
@@ -63,6 +67,7 @@ export const UserForm = ({
         name="phone"
         style={{ marginTop: 18 }}
         error={!form.phone}
+        value={form.phone}
         onChange={handleForm}
       />
 

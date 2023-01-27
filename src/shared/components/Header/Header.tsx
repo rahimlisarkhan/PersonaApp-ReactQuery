@@ -1,9 +1,12 @@
 import styles from "./Header.module.scss";
 
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { AvatarOnline } from "ui/Avatar/Avatar";
+import { useNavigate } from "react-router";
 
 export const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header className={styles.header}>
       <Container
@@ -14,7 +17,14 @@ export const Header = () => {
           alignItems: "center",
         }}
       >
-        <h1 className={styles.logo}>Persona</h1>
+        <Typography
+          variant="h4"
+          color="light"
+          className={styles.logo}
+          onClick={() => navigate("/")}
+        >
+          Persona
+        </Typography>
         <AvatarOnline />
       </Container>
     </header>

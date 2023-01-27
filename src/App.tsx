@@ -1,6 +1,7 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { PATH } from "shared/constants/path";
+import { Loading } from "ui/Loading";
 
 const HomePage = React.lazy(() => import("./pages/Home"));
 const EditPage = React.lazy(() => import("./pages/Edit"));
@@ -11,7 +12,7 @@ const App = () => {
       <Route
         path={PATH.HOME}
         element={
-          <React.Suspense fallback={<h1>Loading....</h1>}>
+          <React.Suspense fallback={<Loading />}>
             <HomePage />
           </React.Suspense>
         }
@@ -19,11 +20,12 @@ const App = () => {
       <Route
         path={PATH.EDIT_PAGE}
         element={
-          <React.Suspense fallback={<h1>Loading....</h1>}>
+          <React.Suspense fallback={<Loading />}>
             <EditPage />
           </React.Suspense>
         }
       />
+      <Route path="*" element={<Navigate replace to={PATH.HOME} />} />
     </Routes>
   );
 };
