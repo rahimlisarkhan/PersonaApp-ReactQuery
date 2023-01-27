@@ -5,6 +5,7 @@ export const isEmail = (email: string) => {
   if (typeof email !== "string") {
     throw new Error("Email must be string");
   }
+
   if (emailRegex?.test(email)) {
     return true;
   }

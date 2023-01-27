@@ -30,11 +30,14 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const { isLoading } = useQuery(QUERY.GET_QUERY(0), () => getUsers(null), {
-    refetchInterval: 30_000,
+    refetchInterval: 100_000,
     refetchIntervalInBackground: false,
     onSuccess: ({ data }) => {
       setUsers(data);
       setCacheState(data);
+    },
+    onError: (err) => {
+      toast.error("Xəta");
     },
   });
 
@@ -58,6 +61,9 @@ const HomePage = () => {
       setOpenDeleteModal(false);
       toast.success("istifadəçi uğurla silindi");
     },
+    onError: (err) => {
+      toast.error("Xəta");
+    },
   });
 
   const handleRouteClick = (id: number) => {
@@ -69,7 +75,7 @@ const HomePage = () => {
   };
 
   const handleSearchUsers = async (searchText: string) => {
-    const searchUsersData = await reqSearch(users, "name", searchText);
+    const searchUsersData = await reqSearch("name", searchText);
 
     setUsers(searchUsersData);
   };

@@ -23,6 +23,9 @@ export const EditPage = () => {
     {
       refetchInterval: false,
       refetchIntervalInBackground: false,
+      onError: (err) => {
+        toast.error("Xəta");
+      },
     }
   );
 
@@ -32,6 +35,9 @@ export const EditPage = () => {
       onSuccess: () => {
         navigate("/");
         toast.success("istifadəçinin məlumatları uğurla yeniləndi");
+      },
+      onError: (err) => {
+        toast.error("Xəta");
       },
     }
   );
